@@ -27,7 +27,7 @@ public class RoteiroTest {
     	bst.add(3);
     	assertTrue(bst.isAVL());
     	bst.add(2);
-    	assertFalse(bst.isAVL());    	
+    	assertFalse(bst.isAVL());
 
     	bst = new BST();
     	bst.add(10);

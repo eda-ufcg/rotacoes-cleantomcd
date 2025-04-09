@@ -7,29 +7,45 @@ public class BST {
     private Node root;
     private int size;
 
+
+    private boolean isRightPending(Node root) {
+        return balance(root) == -1;
+    }
+
+    private boolean isLeftPending(Node root) {
+        return balance(root) == 1;
+    }
+
+    public void rotDir()
+
     public boolean isAVL() {
-        //TODO: implementar
-        return false;
+        return isBalanced(this.root);
+    }
+
+    private boolean isBalanced(Node root) {
+        if(root == null) return true;
+        return (balance(root)) <= 1 && (isBalanced(root.left) && isBalanced(root.right));
     }
 
     /**
      * Retorna a altura da árvore.
      */
     public int height() {
-        //TODO implementar
-        return -1;
+        return height(this.root);
     }
+
 
     /**
      * Retorna a altura de um determinado nó. Auxiliar
      * para recursão e para o balance.
      */
     private int height(Node node) {
-        return -1;
+        if(node == null) return -1;
+        return 1 + Math.max(height(node.left), height(node.right));
     }
 
     private int balance(Node node) {
-        return -1;
+        return (height(node.left) - height(node.right));
     }
 
     /**
@@ -107,7 +123,7 @@ public class BST {
     
     /**
      * Retorna o nó que contém o valor máximo da árvore cuja raiz é passada como parâmetro. Implementação recursiva.
-     * @param a raiz da árvore.
+     * @param node a raiz da árvore.
      * @return o nó contendo o valor máximo da árvore ou null se a árvore estiver vazia.
      */
     private Node min(Node node) {
@@ -131,7 +147,7 @@ public class BST {
     
     /**
      * Retorna o nó que contém o valor máximo da árvore cuja raiz é passada como parâmetro. Implementação recursiva.
-     * @param raiz da árvore.
+     * @param node raiz da árvore.
      * @return o nó contendo o valor máximo da árvore ou null se a árvore estiver vazia.
      */
     
@@ -142,7 +158,7 @@ public class BST {
     
     /**
      * Retorna o nó cujo valor é predecessor do valor passado como parâmetro. 
-     * @param valor O nó para o qual deseja-se identificar o predecessor.
+     * @param node valor O nó para o qual deseja-se identificar o predecessor.
      * @return O nó contendo o predecessor do valor passado como parâmetro. O método retorna null caso não haja 
      * predecessor.
      */
@@ -163,7 +179,7 @@ public class BST {
     
     /**
      * Retorna o nó cujo valor é sucessor do valor passado como parâmetro. 
-     * @param valor O valor para o qual deseja-se identificar o sucessor.
+     * @param node valor O valor para o qual deseja-se identificar o sucessor.
      * @return O nó contendo o sucessor do valor passado como parâmetro. O método retorna null
      * caso não haja sucessor.
      */
